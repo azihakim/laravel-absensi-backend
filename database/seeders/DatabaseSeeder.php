@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'password' => Hash::make('123123123'),
+            'password' => Hash::make('123'),
         ]);
 
         // data dummy for company
         \App\Models\Company::create([
             'name' => 'PT. FIC16',
-            'email' => 'fic16@codewithbahri.com',
+            'email' => 'office@gmail.com',
             'address' => 'Jl. Raya Kedung Turi No. 20, Sleman, DIY',
             'latitude' => '-7.747033',
             'longitude' => '110.355398',
