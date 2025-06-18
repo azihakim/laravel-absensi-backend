@@ -97,4 +97,23 @@ class AttendanceController extends Controller
             'data' => $attendance
         ], 200);
     }
+
+    public function history()
+    {
+
+        // Filter data absensi berdasarkan ID pengguna
+        $attendances = Attendance::with('user')
+            ->where('user_id', auth()->user()->id)
+            ->get();
+
+        $attendanceHistory = $attendances->map(function ($attendance) {
+            return [
+                'user_name' => $attendance->user->name,
+                'date' => $attendance->date,
+                'time_in' => $attendance->time_in,
+                'time_out' => $attendance->time_out,
+            ];
+        });
+        return response()->json(['data' => $attendanceHistory]);
+    }
 }

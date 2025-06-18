@@ -46,3 +46,4 @@ Route::get('/api-user/{id}', [App\Http\Controllers\Api\UserController::class, 'g
 Route::post('/api-user/edit', [App\Http\Controllers\Api\UserController::class, 'updateProfile'])->middleware('auth:sanctum');
 
 Route::post('/check-qr', [App\Http\Controllers\Api\QrAbsenController::class, 'checkQR'])->middleware('auth:sanctum');
+Route::get('/api-attendance-history', [App\Http\Controllers\Api\AttendanceController::class, 'history'])->middleware('auth:sanctum');
