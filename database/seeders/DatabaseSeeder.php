@@ -17,21 +17,26 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('123'),
+            'role' => 'admin',
+        ]);
+        User::factory()->create([
+            'name' => 'mhs',
+            'email' => 'mhs@gmail.com',
+            'password' => Hash::make('123'),
+            'role' => 'mahasiswa',
         ]);
 
         // data dummy for company
         \App\Models\Company::create([
             'name' => 'PT. FIC16',
-            'email' => 'office@gmail.com',
-            'address' => 'Jl. Raya Kedung Turi No. 20, Sleman, DIY',
-            'latitude' => '-7.747033',
-            'longitude' => '110.355398',
+            // 'email' => 'office@gmail.com',
+            'address' => 'Jl. Raya Kedung Turi No. 20, Palembang',
+            'latitude' => '-3.00254',
+            'longitude' => '104.7249473',
             'radius_km' => '0.5',
-            'time_in' => '08:00',
-            'time_out' => '17:00',
         ]);
 
         $this->call([

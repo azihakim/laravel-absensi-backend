@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            // $table->string('email');
             //address
             $table->string('address');
             //latitude
@@ -24,9 +24,9 @@ return new class extends Migration
             //radius_km
             $table->string('radius_km');
             //time_in (format: 08:00)
-            $table->string('time_in');
+            // $table->string('time_in');
             //time_out (format: 17:00)
-            $table->string('time_out');
+            // $table->string('time_out');
 
             $table->timestamps();
         });
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('classes');
     }
 };

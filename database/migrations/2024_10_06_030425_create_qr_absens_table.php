@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qr_absens', function (Blueprint $table) {
-            $table->id();
-            //date
-            $table->date('date');
-            //qr_checkin
-            $table->string('qr_checkin')->nullable();
-            //qr_checkout
-            $table->string('qr_checkout')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('qr_absens', function (Blueprint $table) {
+        //     $table->id();
+        //     //date
+        //     $table->date('date');
+        //     //qr_checkin
+        //     $table->string('qr_checkin')->nullable();
+        //     //qr_checkout
+        //     $table->string('qr_checkout')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**

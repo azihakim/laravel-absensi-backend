@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //position
-            $table->string('position')->nullable();
+            // $table->string('position')->nullable();
             //department
-            $table->string('department')->nullable();
+            // $table->string('department')->nullable();
             //face_embedding
             $table->text('face_embedding')->nullable();
             //image_url

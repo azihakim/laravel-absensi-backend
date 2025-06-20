@@ -20,11 +20,11 @@ return new class extends Migration
             //time_in
             $table->time('time_in');
             //time_out
-            $table->time('time_out')->nullable();
+            // $table->time('time_out')->nullable();
             //latlon_in
             $table->string('latlon_in');
             //latlon_out
-            $table->string('latlon_out')->nullable();
+            // $table->string('latlon_out')->nullable();
             $table->timestamps();
         });
     }
