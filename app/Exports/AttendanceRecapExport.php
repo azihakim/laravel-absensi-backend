@@ -53,7 +53,7 @@ class AttendanceRecapExport implements FromCollection, WithHeadings, WithMapping
     public function map($recap): array
     {
         $row = [$recap['user']->name];
-        foreach (DateHelper::getDatesFromRange($this->startDate, $this->endDate) as $date) {
+        foreach (Datehelper::getDatesFromRange($this->startDate, $this->endDate) as $date) {
             if (isset($recap['data'][$date])) { // Cek apakah ada data untuk tanggal ini
                 if ($recap['data'][$date]['type'] == 'attendance') {
                     $row[] = 'Hadir (' . $recap['data'][$date]['data']->time_in . ')';
