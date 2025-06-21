@@ -69,7 +69,7 @@ class AttendanceController extends Controller
         }
 
         // Ambil semua user
-        $users = \App\Models\User::all();
+        $users = \App\Models\User::where('role', 'mahasiswa')->get();
 
         foreach ($users as $user) {
             $userData = [
