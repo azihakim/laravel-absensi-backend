@@ -26,5 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('permissions', PermissionController::class);
     Route::resource('qr_absens', QrAbsenController::class);
 
+    Route::get('/attendance/recap', [AttendanceController::class, 'recapForm'])->name('attendance.recap.form');
+    Route::post('/attendance/recap', [AttendanceController::class, 'recap'])->name('attendance.recap');
+
     Route::get('/qr-absens/{id}/download', [QrAbsenController::class, 'downloadPDF'])->name('qr_absens.download');
 });

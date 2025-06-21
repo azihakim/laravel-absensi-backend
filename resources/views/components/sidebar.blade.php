@@ -31,6 +31,12 @@
 				</a>
 			</li>
 			<li class="nav-item">
+				<a href="{{ url('/attendance/recap') }}" class="nav-link">
+					<i class="fas fa-calendar"></i>
+					<span>Recap Attendances</span>
+				</a>
+			</li>
+			<li class="nav-item">
 				<a href="{{ route('session.index') }}" class="nav-link">
 					<i class="fas fa-columns"></i>
 					<span>Attendance Sessions</span>

@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
@@ -37,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         // data dummy for company
         \App\Models\Company::create([
-            'name' => 'PT. FIC16',
+            'name' => 'Ruang 603',
             // 'email' => 'office@gmail.com',
             'address' => 'Jl. Raya Kedung Turi No. 20, Palembang',
             'latitude' => '-3.00254',

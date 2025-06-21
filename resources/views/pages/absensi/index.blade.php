@@ -44,7 +44,7 @@
 								<div class="float-right">
 									<form method="GET" action="{{ route('attendances.index') }}">
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="Search by patient name" name="name">
+											<input type="text" class="form-control" placeholder="Search by name" name="name">
 											<div class="input-group-append">
 												<button class="btn btn-primary"><i class="fas fa-search"></i></button>
 											</div>
@@ -62,10 +62,10 @@
 											<th>Date</th>
 											<th>Time In</th>
 											{{-- <th>Time Out</th> --}}
-											<th>Latlong In</th>
+											{{-- <th>Latlong In</th> --}}
 											{{-- <th>Latlong Out</th> --}}
 
-											<th>Action</th>
+											{{-- <th>Action</th> --}}
 										</tr>
 										@foreach ($attendances as $attendance)
 											<tr>
@@ -81,14 +81,14 @@
 												{{-- <td>
 													{{ $attendance->time_out }}
 												</td> --}}
-												<td>
+												{{-- <td>
 													{{ $attendance->latlon_in }}
-												</td>
+												</td> --}}
 												{{-- <td>
 													{{ $attendance->latlon_out }}
 												</td> --}}
 
-												<td>
+												{{-- <td>
 													<div class="d-flex justify-content-center">
 														<a href='{{ route('attendances.edit', $attendance->id) }}' class="btn btn-sm btn-info btn-icon">
 															<i class="fas fa-edit"></i>
@@ -103,7 +103,7 @@
 															</button>
 														</form>
 													</div>
-												</td>
+												</td> --}}
 											</tr>
 										@endforeach
 
