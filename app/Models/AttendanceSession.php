@@ -17,7 +17,7 @@ class AttendanceSession extends Model
 
     public function class()
     {
-        return $this->belongsTo(CompanyModel::class, 'class_id');
+        return $this->belongsTo(Company::class, 'class_id');
     }
 
     public function dosen()

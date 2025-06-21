@@ -1,118 +1,100 @@
 @extends('layouts.app')
 
-@section('title', 'Edit User')
+@section('title', 'Edit Attendance Session')
 
 @push('style')
-	<!-- CSS Libraries -->
-	<link rel="stylesheet" href="{{ asset('library/bootstrap-daterangepicker/daterangepicker.css') }}">
-	<link rel="stylesheet" href="{{ asset('library/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
-	<link rel="stylesheet" href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
 @endpush
 
 @section('main')
 	<div class="main-content">
 		<section class="section">
 			<div class="section-header">
-				<h1>Advanced Forms</h1>
+				<h1>Edit Attendance Session</h1>
 				<div class="section-header-breadcrumb">
 					<div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-					<div class="breadcrumb-item"><a href="#">Forms</a></div>
-					<div class="breadcrumb-item">Users</div>
+					<div class="breadcrumb-item"><a href="#">Attendance</a></div>
+					<div class="breadcrumb-item">Edit Session</div>
 				</div>
 			</div>
 
 			<div class="section-body">
-				<h2 class="section-title">Users</h2>
-
-
-
+				<h2 class="section-title">Attendance Session</h2>
 				<div class="card">
-					<form action="{{ route('users.update', $user) }}" method="POST">
+					<form action="{{ route('session.update', $attendanceSession->id) }}" method="POST">
 						@csrf
 						@method('PUT')
 						<div class="card-header">
-							<h4>Input Text</h4>
+							<h4>Session Information</h4>
 						</div>
 						<div class="card-body">
 							<div class="form-group">
-								<label>Name</label>
-								<input type="text"
-									class="form-control @error('name')
-                                is-invalid
-                            @enderror"
-									name="name" value="{{ $user->name }}">
-								@error('name')
-									<div class="invalid-feedback">
-										{{ $message }}
-									</div>
+								<label>Class</label>
+								<select name="class_id" class="form-control select2 @error('class_id') is-invalid @enderror">
+									<option value="">-- Select Class --</option>
+									@foreach ($classes as $class)
+										<option value="{{ $class->id }}"
+											{{ old('class_id', $attendanceSession->class_id) == $class->id ? 'selected' : '' }}>
+											{{ $class->name }}
+										</option>
+									@endforeach
+								</select>
+								@error('class_id')
+									<div class="invalid-feedback">{{ $message }}</div>
 								@enderror
 							</div>
 							<div class="form-group">
-								<label>Email</label>
-								<input type="email"
-									class="form-control @error('email')
-                                is-invalid
-                            @enderror"
-									name="email" value="{{ $user->email }}">
-								@error('email')
-									<div class="invalid-feedback">
-										{{ $message }}
-									</div>
+								<label>Dosen</label>
+								<select name="dosen_id" class="form-control select2 @error('dosen_id') is-invalid @enderror">
+									<option value="">-- Select Dosen --</option>
+									@foreach ($dosens as $dosen)
+										<option value="{{ $dosen->id }}"
+											{{ old('dosen_id', $attendanceSession->dosen_id) == $dosen->id ? 'selected' : '' }}>
+											{{ $dosen->name }}
+										</option>
+									@endforeach
+								</select>
+								@error('dosen_id')
+									<div class="invalid-feedback">{{ $message }}</div>
 								@enderror
 							</div>
 							<div class="form-group">
-								<label>Password</label>
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fas fa-lock"></i>
-										</div>
-									</div>
-									<input type="password"
-										class="form-control @error('password')
-                                is-invalid
-                            @enderror"
-										name="password">
-								</div>
-								@error('password')
-									<div class="invalid-feedback">
-										{{ $message }}
-									</div>
+								<label>Session Date</label>
+								<input type="date" name="session_date" class="form-control @error('session_date') is-invalid @enderror"
+									value="{{ old('session_date', $attendanceSession->session_date) }}">
+								@error('session_date')
+									<div class="invalid-feedback">{{ $message }}</div>
 								@enderror
 							</div>
 							<div class="form-group">
-								<label>Phone</label>
-								<input type="number" class="form-control" name="phone" value="{{ $user->phone }}">
+								<label>Start Time</label>
+								<input type="time" name="start_time" class="form-control @error('start_time') is-invalid @enderror"
+									value="{{ old('start_time', $attendanceSession->start_time) }}">
+								@error('start_time')
+									<div class="invalid-feedback">{{ $message }}</div>
+								@enderror
 							</div>
-
-
 							<div class="form-group">
-								<label class="form-label">Roles</label>
-								<div class="selectgroup w-100">
-									<label class="selectgroup-item">
-										<input type="radio" name="role" value="admin" class="selectgroup-input"
-											@if ($user->role == 'admin') checked @endif>
-										<span class="selectgroup-button">Admin</span>
-									</label>
-									<label class="selectgroup-item">
-										<input type="radio" name="role" value="dosen" class="selectgroup-input"
-											@if ($user->role == 'dosen') checked @endif>
-										<span class="selectgroup-button">Dosen</span>
-									</label>
-									<label class="selectgroup-item">
-										<input type="radio" name="role" value="mahasiswa" class="selectgroup-input"
-											@if ($user->role == 'mahasiswa') checked @endif>
-										<span class="selectgroup-button">Mahasiswa</span>
-									</label>
-
-								</div>
+								<label>End Time</label>
+								<input type="time" name="end_time" class="form-control @error('end_time') is-invalid @enderror"
+									value="{{ old('end_time', $attendanceSession->end_time) }}">
+								@error('end_time')
+									<div class="invalid-feedback">{{ $message }}</div>
+								@enderror
+							</div>
+							<div class="form-group">
+								<label>Status</label>
+								<select name="status" class="form-control @error('status') is-invalid @enderror">
+									<option value="on" {{ old('status', $attendanceSession->status) == 'on' ? 'selected' : '' }}>On</option>
+									<option value="off" {{ old('status', $attendanceSession->status) == 'off' ? 'selected' : '' }}>Off</option>
+								</select>
+								@error('status')
+									<div class="invalid-feedback">{{ $message }}</div>
+								@enderror
 							</div>
 						</div>
 						<div class="card-footer text-right">
-							<button class="btn btn-primary">Submit</button>
+							<button class="btn btn-primary">Update</button>
 						</div>
 					</form>
 				</div>
@@ -123,4 +105,10 @@
 @endsection
 
 @push('scripts')
+	<script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+	<script>
+		$(document).ready(function() {
+			$('.select2').select2();
+		});
+	</script>
 @endpush

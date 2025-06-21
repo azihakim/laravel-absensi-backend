@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
 	<aside id="sidebar-wrapper">
 		<div class="sidebar-brand">
-			<a href="index.html">BAHRI HR</a>
+			<a href="index.html">Sistem ABsensi</a>
 		</div>
 		<div class="sidebar-brand sidebar-brand-sm">
 			<a href="index.html">St</a>
@@ -31,7 +31,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{ route('attendance_sessions.index') }}" class="nav-link">
+				<a href="{{ route('session.index') }}" class="nav-link">
 					<i class="fas fa-columns"></i>
 					<span>Attendance Sessions</span>
 				</a>
