@@ -45,9 +45,9 @@ class DatabaseSeeder extends Seeder
             'radius_km' => '0.5',
         ]);
 
-        $this->call([
-            AttendanceSeeder::class,
-            PermissionSeeder::class,
-        ]);
+        // $this->call([
+        //     AttendanceSeeder::class,
+        //     PermissionSeeder::class,
+        // ]);
     }
 }
