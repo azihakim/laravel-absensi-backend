@@ -11,11 +11,15 @@
 @section('main')
 	<div class="main-content">
 		<section class="section">
-			<div class="section-header">
+			<div class="section-header" style="margin-bottom: -1px">
 				<h1>Dashboard</h1>
 			</div>
+			<div class="mb-2">
+				<img src="{{ asset('img/dashboard-banner.png') }}" alt="Dashboard Banner" class="img-fluid w-100"
+					style="object-fit: cover;">
+			</div>
 			<div class="row">
-				<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+				<div class="col-lg-4 col-md-4 col-sm-12 mb-3">
 					<div class="card card-statistic-1">
 						<div class="card-icon bg-primary">
 							<i class="far fa-user"></i>
@@ -30,6 +34,37 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+					<div class="card card-statistic-1">
+						<div class="card-icon bg-primary">
+							<i class="far fa-user"></i>
+						</div>
+						<div class="card-wrap">
+							<div class="card-header">
+								<h4>Total Dosen</h4>
+							</div>
+							<div class="card-body">
+								{{ $total_dosen }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+					<div class="card card-statistic-1">
+						<div class="card-icon bg-primary">
+							<i class="far fa-user"></i>
+						</div>
+						<div class="card-wrap">
+							<div class="card-header">
+								<h4>Total Mahasiswa</h4>
+							</div>
+							<div class="card-body">
+								{{ $total_mahasiswa }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</section>
 	</div>
 @endsection

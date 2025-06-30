@@ -16,7 +16,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('home', function () {
         // total user
         $total_user = \App\Models\User::count();
-        return view('pages.dashboard', ['type_menu' => 'home'], compact('total_user'));
+        $total_dosen = \App\Models\User::where('role', 'dosen')->count();
+        $total_mahasiswa = \App\Models\User::where('role', 'mahasiswa')->count();
+        return view('pages.dashboard', ['type_menu' => 'home'], compact('total_user', 'total_dosen', 'total_mahasiswa'));
     })->name('home');
 
     Route::resource('users', UserController::class);
