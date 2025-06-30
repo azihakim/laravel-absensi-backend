@@ -18,7 +18,8 @@ Route::middleware(['auth'])->group(function () {
         $total_user = \App\Models\User::count();
         $total_dosen = \App\Models\User::where('role', 'dosen')->count();
         $total_mahasiswa = \App\Models\User::where('role', 'mahasiswa')->count();
-        return view('pages.dashboard', ['type_menu' => 'home'], compact('total_user', 'total_dosen', 'total_mahasiswa'));
+        $total_admin = \App\Models\User::where('role', 'admin')->count();
+        return view('pages.dashboard', ['type_menu' => 'home'], compact('total_user', 'total_dosen', 'total_mahasiswa', 'total_admin'));
     })->name('home');
 
     Route::resource('users', UserController::class);
