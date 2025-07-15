@@ -98,26 +98,27 @@ class AttendanceSessionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($id, Request $request, AttendanceSession $attendanceSession)
+    public function update($id, Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            'class_id' => 'required|exists:classes,id',
-            'dosen_id' => 'required|exists:users,id',
-            'session_date' => 'required|date',
-            'start_time' => 'required',
-            'end_time' => 'required|after:start_time',
-            'status' => 'required|in:on,off',
+        // Ambil hanya kolom yang diizinkan untuk diupdate
+        $data = $request->only([
+            'class_id',
+            'dosen_id',
+            'session_date',
+            'start_time',
+            'end_time',
+            'status',
         ]);
 
-        $attendanceSession->update($request->all());
+        $attendanceSession = AttendanceSession::findOrFail($id);
+        $attendanceSession->update($data);
 
-        if ($request->status == 'on') {
-            $company = Company::find($request->class_id);
-            $company->update(['attendance_type' => 'Face']);
-        } else {
-            $company = Company::find($request->class_id);
-            $company->update(['attendance_type' => 'None']);
+        // Update attendance_type pada Company sesuai status
+        $company = Company::find($request->class_id);
+        if ($company) {
+            $company->update([
+                'attendance_type' => $request->status == 'on' ? 'Face' : 'None'
+            ]);
         }
 
         return redirect()->route('session.index')->with('success', 'Attendance session updated successfully.');

@@ -53,18 +53,6 @@ class PermissionController extends Controller
         $permission_date = $permission->date_permission;
         $date = Carbon::parse($permission_date)->translatedFormat('d F Y');
         $reason = $permission->reason;
-        // $this->sendNotificationToUser($permission->user_id, 'Status Izin anda adalah ' . $str);
-        if ($request->is_approved == 1) {
-            // Resend::emails()->send([
-            //     'from' =>  'onboarding@resend.dev',
-            //     'to' => $user->email,
-            //     'subject' => 'Approved Permission - ' . $user->name,
-            //     'html' => (new ApprovedPermissionConfirmation($user, $date, $reason))->render(),
-            // ]);
-
-            //sent email with Mail
-            Mail::to($user->email)->send(new ApprovedPermissionConfirmation($user, $date, $reason));
-        }
         return redirect()->route('permissions.index')->with('success', 'Permission updated successfully');
     }
 
