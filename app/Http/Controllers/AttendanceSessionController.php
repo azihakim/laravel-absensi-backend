@@ -127,8 +127,11 @@ class AttendanceSessionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AttendanceSession $attendanceSession)
+    public function destroy($id)
     {
-        //
+        $attendanceSession = AttendanceSession::findOrFail($id);
+        $attendanceSession->delete();
+
+        return redirect()->route('session.index')->with('success', 'Attendance session deleted successfully.');
     }
 }
