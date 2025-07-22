@@ -14,7 +14,7 @@ class AttendanceController extends Controller
     {
         // Cek apakah user sudah mengajukan izin untuk hari ini
         $hasPermission = Permission::where('user_id', $request->user()->id)
-            ->where('date', date('Y-m-d'))
+            ->where('date_permission', date('Y-m-d'))
             ->exists();
 
         if ($hasPermission) {
