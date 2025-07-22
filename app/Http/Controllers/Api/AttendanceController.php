@@ -5,12 +5,24 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
+use App\Models\Permission;
 
 class AttendanceController extends Controller
 {
     //checkin
     public function checkin(Request $request)
     {
+        // Cek apakah user sudah mengajukan izin untuk hari ini
+        $hasPermission = Permission::where('user_id', $request->user()->id)
+            ->where('date', date('Y-m-d'))
+            ->exists();
+
+        if ($hasPermission) {
+            return response([
+                'message' => 'Tidak dapat absen, Anda sudah mengajukan izin untuk hari ini.'
+            ], 400);
+        }
+
         //validate lat and long
         $request->validate([
             'latitude' => 'required',
