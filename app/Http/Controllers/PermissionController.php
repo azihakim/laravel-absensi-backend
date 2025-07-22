@@ -9,6 +9,8 @@ use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 use Resend\Laravel\Facades\Resend;
 use App\Mail\ApprovedPermissionConfirmation;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,6 +18,14 @@ use Illuminate\Support\Facades\Mail;
 
 class PermissionController extends Controller
 {
+    public function download($id)
+    {
+        $permission = Permission::findOrFail($id);
+
+        $pdf = FacadePdf::loadView('pages.permission.pdf', compact('permission'));
+
+        return $pdf->download('surat_izin_' . $permission->user->name . '.pdf');
+    }
     //index
     public function index(Request $request)
     {
