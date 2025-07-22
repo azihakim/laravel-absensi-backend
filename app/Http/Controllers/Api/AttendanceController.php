@@ -20,7 +20,7 @@ class AttendanceController extends Controller
         if ($hasPermission) {
             return response([
                 'message' => 'Tidak dapat absen, Anda sudah mengajukan izin untuk hari ini.'
-            ], 400);
+            ], 300);
         }
 
         //validate lat and long
