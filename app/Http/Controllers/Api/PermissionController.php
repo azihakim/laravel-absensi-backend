@@ -18,7 +18,7 @@ class PermissionController extends Controller
 
         $attendanceExists = \DB::table('attendances')
             ->where('user_id', $request->user()->id)
-            ->whereDate('date', $request->date)
+            ->where('date', $request->date)
             ->exists();
 
         if ($attendanceExists) {
