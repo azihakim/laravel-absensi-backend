@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Models\Permission;
+use Carbon\Carbon;
 
 class PermissionController extends Controller
 {
@@ -15,14 +17,13 @@ class PermissionController extends Controller
             'date' => 'required',
             'reason' => 'required',
         ]);
-
-        $attendanceExists = \DB::table('attendances')
-            ->where('user_id', $request->user()->id)
-            ->where('date', $request->date)
+        $date = Carbon::parse($request->date)->format('Y-m-d');
+        $attendanceExists = Attendance::where('user_id', $request->user()->id)
+            ->where('date', $date)
             ->exists();
 
         if ($attendanceExists) {
-            return response()->json(['message' => 'Sudah absen di hari tersebut'], 300);
+            return response()->json(['message' => 'Sudah absen di hari tersebut'], 401);
         }
 
         $permission = new Permission();
