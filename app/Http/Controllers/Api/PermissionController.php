@@ -16,6 +16,15 @@ class PermissionController extends Controller
             'reason' => 'required',
         ]);
 
+        $attendanceExists = \DB::table('attendances')
+            ->where('user_id', $request->user()->id)
+            ->whereDate('date', $request->date)
+            ->exists();
+
+        if ($attendanceExists) {
+            return response()->json(['message' => 'Sudah absen di hari tersebut'], 300);
+        }
+
         $permission = new Permission();
         $permission->user_id = $request->user()->id;
         $permission->date_permission = $request->date;
